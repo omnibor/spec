@@ -1,13 +1,16 @@
 # Scope
 
-Specifies procedures for constructing and conveying artifact trees for artifacts.  Including but not limited to: 
+Specifies procedures for constructing and conveying artifact trees, directed acyclic graphs (DAGs), and other related 
+data structures for artifacts.  Including but not limited to:
 
-- formats for artifact ids
-- formats for specifying parent child relationships within an artifact tree
-- manner of embedding artifact tree identifiers in artifacts of various types
+- formats for artifact identifiers
+- formats for specifying graph relationships between artifacts
+- manner of embedding identifiers for artifact trees, directed acyclic graphs (DAGs), and other related 
+data structures in artifacts of various types
 - guidance for build tools for:
-    - constructing artifact trees
-    - conveying artifact trees
-    - embedding artifact tree ids in artifacts
-- manners of conveyance of artifact trees
-- descriptions of use cases for which artifact trees may be used
+  - constructing artifact artifact trees, DAGs, and other related data structures
+  - conveying artifact trees, DAGs, and other related data structures
+  - embedding identifiers for artifact trees, DAGs, and other related data structures ids in artifacts
+  - manners of conveyance of artifact trees, DAGs, and other related data structures
+  - descriptions of use cases for which artifact trees, directed acyclic graphs, and other related data structures may be used
+  - guidance on metadata which references artifact trees, DAGs, and other related data structures
