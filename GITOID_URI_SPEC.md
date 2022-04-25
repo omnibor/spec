@@ -10,7 +10,7 @@ Contact:
 Scheme Creator: GitBOM
 
 Change controller:
-    Either the registering party or someone who is verified to represent
+    Either the registering party or someone verified to represent
     the scheme creator.  See previous answer.
 
 References:
@@ -20,17 +20,17 @@ Scheme syntax: gitoid":"<git object type>":"<hash algorithm>":"<hash value>
 
 Current valid values for <git object type> are 'blob','tree','commit', and 'tag'.
 Current valid values for <hash algorithm> are 'sha1' and 'sha256'
-<hash value> should be expressed as a hexidecimal string in lower case.
+<hash value> should be expressed as a hexadecimal string in lower case.
 
 Example: gitoid:blob:sha1:261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64
 
 Scheme semantics:
 
-gitoid stands for Git Object ID.  Git is an object store.  It currently has four types of objects.  A git object is formed by prepending an object header to the contents of the object.  A git object header consists of:
+gitoid stands for Git Object ID.  Git is an object store, which currently supports four types of objects.  A git object is formed by prepending an object header to the object's contents.  A git object header consists of:
 
 <git object type>" "<size of contents as decimal string>"\0"
 
-The git object id is computed by applying a hash to the git object.  Currently the most common hash is sha1, but there is some effort to transition to sha256 over time.
+The git object id is computed by applying a hash to the git object.  Currently, the most common hash is sha1, but there is some effort to transition to sha256 over time.
 
 A gitoid URI identifies a git object independent of any particular git repository.  Given a byte array and a gitoid, it should be possible to construct the analogous git object header from the gitoid, as gitoid contains the git object type.  By prepending the constructed git object header to the byte array and performing the hash indicated in the gitoid, it should be possible to determine whether or not the gitoid matches the byte array.
 
