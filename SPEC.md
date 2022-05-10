@@ -145,14 +145,21 @@ output artifact.
 
 ### GitBOM Document persistence by a Build Tool
 
-When persisting an output artifact to a file system, the build tool should create a subdirectory of the directory to which the output artifact is being written of the form:
-```.bom/objects/``` and write out the GitBOM document to ```.bom/objects/${gitoid:0:2}/${gitoid:2:}``` where ```${gitoid}```
-is the git object id of the GitBOM document.
+Each build tool should persist the GitBOM document it generates and any metadata it optionally generates.
+
+
+####  GitBOM Document persistence by a Build Tool to its local filesystem
+If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM document to ```${GITBOM_DIR}/objects/${gitoid:0:2}/${gitoid:2:}``` where ```${gitoid}``` is the git object id of the GitBOM document in hexidecimal.
 
 ### Build tool persistence of related metadata
 
-When persisting an output artifact to a file system, if the build tool has additional metadata to persist that makes reference to the Artifact Dependency Graph (ADG),
-it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```.bom/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
+If the build tool has additional metadata to persist that makes referece to the Artifact Dependency Graph (ADG),
+it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```${GITBOM_DIR}/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
+
+### Build tool selection of GITBOM_DIR
+GITBOM_DIR document should be set in order of precedence by:
+1.  A non-empty env variable named GITBOM_DIR
+2.  A subdirectory ```.bom.info/``` of the directory to which it is writing out the artifact
 ## Annex A
 
 
