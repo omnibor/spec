@@ -30,7 +30,7 @@ Type text.
 
 ##	Scope (mandatory)
 
-Specifies procedures for constructing and conveying artifact dependency graphs (ADGs), and other related
+Specifies procedures for constructing and conveying Artifact Dependency Graphs (ADGs), and other related
 data structures for artifacts.  Including but not limited to:
 
 - formats for artifact identifiers
@@ -39,11 +39,11 @@ data structures for artifacts.  Including but not limited to:
 data structures in artifacts of various types
 - guidance on metadata which references ADGs, and other related data structures
 - guidance for build tools for:
-  - constructing ADGss, and other related data structures
+  - constructing ADGs, and other related data structures
   - conveying ADGs, and other related data structures
   - embedding identifiers for ADGs, and other related data structures ids in artifacts
   - manners of conveyance of ADGs, and other related data structures
-  - descriptions of use cases for which directed acyclic graphs, and other related data structures may be used
+  - descriptions of use cases for which ADGs, and other related data structures may be used
 
 ##	Normative references (mandatory)
 
@@ -151,7 +151,7 @@ is the git object id of the GitBOM document.
 
 ### Build tool persistence of related metadata
 
-When persisting an output artifact to a file system, if the build tool has additional metadata to persist that makes refernce to the Artifact Dependency Graph (ADG),
+When persisting an output artifact to a file system, if the build tool has additional metadata to persist that makes reference to the Artifact Dependency Graph (ADG),
 it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```.bom/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
 ## Annex A
 
