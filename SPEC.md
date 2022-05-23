@@ -30,20 +30,20 @@ Type text.
 
 ##	Scope (mandatory)
 
-Specifies procedures for constructing and conveying artifact trees, directed acyclic graphs (DAGs), and other related 
+Specifies procedures for constructing and conveying Artifact Dependency Graphs (ADGs), and other related
 data structures for artifacts.  Including but not limited to:
 
 - formats for artifact identifiers
 - formats for specifying graph relationships between artifacts
-- manner of embedding identifiers for artifact trees, directed acyclic graphs (DAGs), and other related 
+- manner of embedding identifiers for ADGs, and other related
 data structures in artifacts of various types
+- guidance on metadata which references ADGs, and other related data structures
 - guidance for build tools for:
-  - constructing artifact artifact trees, DAGs, and other related data structures
-  - conveying artifact trees, DAGs, and other related data structures
-  - embedding identifiers for artifact trees, DAGs, and other related data structures ids in artifacts
-  - manners of conveyance of artifact trees, DAGs, and other related data structures
-  - descriptions of use cases for which artifact trees, directed acyclic graphs, and other related data structures may be used
-  - guidance on metadata which references artifact trees, DAGs, and other related data structures
+  - constructing ADGs, and other related data structures
+  - conveying ADGs, and other related data structures
+  - embedding identifiers for ADGs, and other related data structures ids in artifacts
+  - manners of conveyance of ADGs, and other related data structures
+  - descriptions of use cases for which ADGs, and other related data structures may be used
 
 ##	Normative references (mandatory)
 
@@ -83,13 +83,13 @@ It should be possible to identify each artifact with an artifact ID with the fol
 **Immutable**
 : *An identified artifact can not be modified without also changing its identity.*
 
-### Artifact Tree
+### Artifact Dependency Graph (ADG)
 
-The artifact tree of an artifact is the recursive DAG (Directed Acyclic Graph) of all the `input artifacts` that are transformed by a build tool] into that artifact.  It includes the direct input artifacts, and the recursive set of input artifacts to each input artifact, all the way down the tree.
+The Artifact Dependency Graph (ADG) of an artifact is the recursive DAG (Directed Acyclic Graph) of all the `input artifacts` that are transformed by a build tool] into that artifact.  It includes the direct input artifacts, and the recursive set of input artifacts to each input artifact, all the way down the graph.
 
-#### Artifact tree singularity
+#### Artifact Dependency Graph (ADG) singularity
 
-An artifact should have precisely one artifact tree. All equivalent artifacts should have the same artifact tree.
+An artifact should have precisely one Artifact Dependency Graph (ADG). All equivalent artifacts should have the same Artifact Dependency Graph (ADG).
 
 ## Build Tools
 
@@ -151,7 +151,7 @@ is the git object id of the GitBOM document.
 
 ### Build tool persistence of related metadata
 
-When persisting an output artifact to a file system, if the build tool has additional metadata to persist that makes refernce to the artifact tree,
+When persisting an output artifact to a file system, if the build tool has additional metadata to persist that makes reference to the Artifact Dependency Graph (ADG),
 it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```.bom/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
 ## Annex A
 
