@@ -47,7 +47,7 @@ data structures in artifacts of various types
 
 ##	Normative references (mandatory)
 
-There are no normative references in this document.
+[gitoid uri](https://www.iana.org/assignments/uri-schemes/prov/gitoid)
 
 ## Terms and definitions (mandatory)
 
@@ -98,61 +98,113 @@ A build tool is something which reads one or more input artifacts and writes one
 ## Specifications
 ### Artifact ID
 
-GitBOM uses the git object id (as a blob) for an artifact as its artifact ID.
+A hash function over the []byte of an artifact satisfy the canonical, unique, immutable requirements for an artifact identifier.
+
+The vast majority of the source code artifacts are already indexed by git object id (gitoids) as git objects of type blob.
+
+For this reason GitBOM uses the git object id (gitoid) (as a blob) for an artifact as its artifact ID.  
+
+Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  In order to distinguish between them we will use the gitoid uri prefixes of gitoid:blob:sha1 and gitoid:blob:sha256.
+
+All subsequent references to mandatory all identifiier types in this document should be interpretted to mean the list:
+
+- gitoid:blob:sha1
+- gitoid:blob:sha256
 
 ### GitBOM Document
 
-Each artifact has a GitBOM document that describes its immediate children consiting of a set of new line delimited records, one for each child, in lexical order.
+A GitBOM document describes the immediate children of an artifact in the Artifact Dependency Graph (ADG).
+
+A GitBOM document utilizes precisely one identifier type.
+
+### GitBOM identifier
+
+A GitBOM document is identified by computing its identifier as an artifact with the identifier type used for identifiers within the GitBOM document itself.
+
+#### GitBOM Document Header
+
+In order to distinguish the type of identifier used in the GitBOM document, it begins with a single newline terminated header line:
+
+```
+${identifier type uri prefix}\n
+```
+
+For example:
+
+```
+gitoid:blob:sha1\n
+```
+
+or
+
+```
+gitoid:blob:sha256\n
+```
+
+All identifiers in a GitBOM document MUST be of the identifier type declared in the header.
+
+#### GitBOM Document Child Records
+
+The GitBOM document after the header consists of a list of newline delimited child records
 
 A child artifact which is itself a leaf artifacts would be represented by
 
 ```
-blob⎵${git object id of child}\n
+blob⎵${artifact id of child}\n
 ```
 
 A child artifact which is itself a derived artifact would be represented by
 ```
-blob⎵${git object id of child}⎵bom⎵${git object id of child's GitBOM document}\n
+blob⎵${artifact id of child}⎵bom⎵${GitBOM identifier of child's GitBOM document}\n
 ```
 
-### GitBOM identifier
+The child artifact redords must be written to the GitBOM Document in lexical order.
 
-For a given artifact, the GitBOM ID of that artifact is simply the git object id of it's GitBOM Document.
+The artifact id and GitBOM document id must both be of the identifier type declared in the GitBOM document header.
 
 ### GitBOM Identifier Embedding
 
-Each build tool should embed the GitBOM ID of its output artifact(s) into the output artifact in a manner:
+Each build tool should embed into the output artifact a new line delimited, lexically ordered, list of GitBOM identifiers for each mandatory identifier type in a manner:
 
-1.  Appropriate to the type of artifact
-2.  Generally agreed upon for that artifact
+1. Appropriate to the type of artifact
+2. Generally agreed upon for that artifact
 
 ### GitBOM Document Construction by a Build Tool
 
-When a build tool reads an artifact, it should for each input file:
-1. Compute the git object id of the input file - ${artifact identifier}
-2. Examine the artifact for an embedded GitBOM identifier - ${gitbom idenfitier}
-3. If the artifact contains a GitBOM identifer it construct a record:
-   ```
-   blob⎵${artifact identifier}⎵bom⎵${GitBOM identifier}\n
-   ```
-4. Otherwise construct a record:
-   ```
-   blob⎵${artifact identifier}\n
-   ```
+A build tool creating an output artifact must compute a GitBOM document of each mandatory artifact id type.
 
-Concatenate all records together and apply lexical ordering by line to create the GitBOM document of the
-output artifact.
+For each input artifact the build tool must:
+
+1. Compute the git object id of the input - ${artifact identifier}
+2. Examine the input for an embedded GitBOM identifier - ${gitbom idenfitier}
+
+The build tool must persist a GitBOM document using the ${artifact identifier} and ${gitbom identifier} for each input.
 
 ### GitBOM Document persistence by a Build Tool
 
-When persisting an output artifact to a file system, the build tool should create a subdirectory of the directory to which the output artifact is being written of the form:
-```.bom/objects/``` and write out the GitBOM document to ```.bom/objects/${gitoid:0:2}/${gitoid:2:}``` where ```${gitoid}```
-is the git object id of the GitBOM document.
+Each build tool should persist all GitBOM documents it generates.
+
+Generically, GitBOM persistence can be thought of as having an abstract API:
+```
+WriteGitBOM(GitBOM id,GitBOM contents) returns error
+ReadGitBOM(GitBOM id) returns GitBOM Contents
+```
+
+WriteGitBOM should check that GitBOM id matches GitBOM contents and return an error if it does not.
+
+####  GitBOM Document persistence by a Build Tool to its local filesystem
+If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM document to ```${GITBOM_DIR}/objects/${GitBOMID:0:2}/${GitBOMID:2:}``` where ```${artifact id}``` is the GitBOM id in lowercase hexidecimal.
 
 ### Build tool persistence of related metadata
 
-When persisting an output artifact to a file system, if the build tool has additional metadata to persist that makes reference to the Artifact Dependency Graph (ADG),
-it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```.bom/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
+If the build tool has additional metadata to persist that makes referece to the Artifact Dependency Graph (ADG),
+it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```${GITBOM_DIR}/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
+
+### Build tool selection of GITBOM_DIR
+GITBOM_DIR document should be set in order of precedence by:
+1.  A non-empty env variable named GITBOM_DIR
+2.  A build tool specific flag
+3.  A subdirectory ```.bom.info/``` of the directory to which it is writing out the artifact
 ## Annex A
 
 
