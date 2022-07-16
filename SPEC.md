@@ -1,4 +1,4 @@
- # GitBOM Specficiation
+ # GitBOM Specification
 ## Version 1.0.0
 ## Status Pre-draft
 
