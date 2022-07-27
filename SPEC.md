@@ -113,17 +113,17 @@ All subsequent references to mandatory all identifiier types in this document sh
 
 ### GitBOM Document
 
-A GitBOM document describes the immediate children of an artifact in the Artifact Dependency Graph (ADG).
+A GitBOM Document describes the immediate children of an artifact in the Artifact Dependency Graph (ADG).
 
-A GitBOM document utilizes precisely one identifier type.
+A GitBOM Document utilizes precisely one identifier type.
 
 ### GitBOM Identifier
 
-A GitBOM document is identified by computing its identifier as an artifact with the identifier type used for identifiers within the GitBOM document itself.
+A GitBOM Document is identified by computing its identifier as an artifact with the identifier type used for identifiers within the GitBOM Document itself.
 
 #### GitBOM Document Header
 
-In order to distinguish the type of identifier used in the GitBOM document, it begins with a single newline terminated header line:
+In order to distinguish the type of identifier used in the GitBOM Document, it begins with a single newline terminated header line:
 
 ```
 ${identifier type uri prefix}\n
@@ -141,11 +141,11 @@ or
 gitoid:blob:sha256\n
 ```
 
-All identifiers in a GitBOM document MUST be of the identifier type declared in the header.
+All identifiers in a GitBOM Document MUST be of the identifier type declared in the header.
 
 #### GitBOM Document Child Records
 
-The GitBOM document after the header consists of a list of newline delimited child records
+The GitBOM Document after the header consists of a list of newline delimited child records
 
 A child artifact which is itself a leaf artifacts would be represented by
 
@@ -155,12 +155,12 @@ blob⎵${artifact id of child}\n
 
 A child artifact which is itself a derived artifact would be represented by
 ```
-blob⎵${artifact id of child}⎵bom⎵${GitBOM identifier of child's GitBOM document}\n
+blob⎵${artifact id of child}⎵bom⎵${GitBOM identifier of child's GitBOM Document}\n
 ```
 
 The child artifact records must be written to the GitBOM Document in lexical order.
 
-The artifact id and GitBOM document id must both be of the identifier type declared in the GitBOM document header.
+The artifact id and GitBOM Document id must both be of the identifier type declared in the GitBOM Document header.
 
 ### GitBOM Identifier Embedding
 
@@ -193,7 +193,7 @@ ReadGitBOM(GitBOM id) returns GitBOM Contents
 WriteGitBOM should check that GitBOM id matches GitBOM contents and return an error if it does not.
 
 ####  GitBOM Document persistence by a Build Tool to its local filesystem
-If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM document to ```${GITBOM_DIR}/objects/${GitBOMID:0:2}/${GitBOMID:2:}``` where ```${artifact id}``` is the GitBOM id in lowercase hexidecimal.
+If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM Document to ```${GITBOM_DIR}/objects/${GitBOMID:0:2}/${GitBOMID:2:}``` where ```${artifact id}``` is the GitBOM id in lowercase hexidecimal.
 
 ### Build tool persistence of related metadata
 
