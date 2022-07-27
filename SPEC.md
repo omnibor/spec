@@ -104,7 +104,7 @@ The vast majority of source code artifacts are already indexed by their git obje
 
 For this reason GitBOM uses the gitoid for an artifact as its artifact ID. 
 
-Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  The [gitoid URI spec](https://www.iana.org/assignments/uri-schemes/prov/gitoid) uses different prefixes,  `gitoid:blob:sha1` or `gitoid:blob:sha256`, to distinguish which algorithm is being used for computing the gitoid of a blob.   This document adopts the gitoid uri prefixes to distinguish Gitoid Identifier Types.
+Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  The [gitoid URI spec](https://www.iana.org/assignments/uri-schemes/prov/gitoid) uses different prefixes,  `gitoid:blob:sha1` or `gitoid:blob:sha256`, to distinguish which algorithm is being used for computing the gitoid of a blob.   This document adopts the gitoid uri prefixes to distinguish Gitoid Identifier Types.  
 
 All subsequent references to mandatory all identifiier types in this document should be interpretted to mean the list:
 
@@ -115,18 +115,18 @@ All subsequent references to mandatory all identifiier types in this document sh
 
 A GitBOM Document describes the immediate children of an artifact in the Artifact Dependency Graph (ADG).
 
-A GitBOM Document utilizes precisely one identifier type.
+A GitBOM Document utilizes precisely one Gitoid Identifier Type.
 
 ### GitBOM Identifier
 
-A GitBOM Document is identified by computing its identifier as an artifact with the identifier type used for identifiers within the GitBOM Document itself.
+A GitBOM Document is identified by computing its identifier as an artifact with the Gitoid Identifier Type used for identifiers within the GitBOM Document itself.
 
 #### GitBOM Document Header
 
 In order to distinguish the type of identifier used in the GitBOM Document, it begins with a single newline terminated header line:
 
 ```
-${identifier type uri prefix}\n
+${Gitoid Identifier Type uri prefix}\n
 ```
 
 For example:
@@ -141,7 +141,7 @@ or
 gitoid:blob:sha256\n
 ```
 
-All identifiers in a GitBOM Document MUST be of the identifier type declared in the header.
+All identifiers in a GitBOM Document MUST be of the Gitoid Identifier Type declared in the header.
 
 #### GitBOM Document Child Records
 
@@ -160,11 +160,11 @@ blob⎵${artifact id of child}⎵bom⎵${GitBOM identifier of child's GitBOM Doc
 
 The child artifact records must be written to the GitBOM Document in lexical order.
 
-The artifact id and GitBOM Document id must both be of the identifier type declared in the GitBOM Document header.
+The artifact id and GitBOM Document id must both be of the Gitoid Identifier Type declared in the GitBOM Document header.
 
 ### GitBOM Identifier Embedding
 
-Each build tool should embed into the output artifact a new line delimited, lexically ordered, list of GitBOM identifiers for each mandatory identifier type in a manner:
+Each build tool should embed into the output artifact a new line delimited, lexically ordered, list of GitBOM identifiers for each mandatory Gitoid Identifier Type in a manner:
 
 1. Appropriate to the type of artifact
 2. Generally agreed upon for that artifact
