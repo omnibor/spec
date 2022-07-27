@@ -98,7 +98,7 @@ A build tool is something which reads one or more input artifacts and writes one
 ## Specifications
 ### Artifact ID
 
-A hash function over the byte array (`[]byte`) of an artifact satisfy the canonical, unique, immutable requirements for an artifact identifier.
+A hash function over the []byte of an artifact satisfies the canonical, unique, immutable requirements for an artifact identifier.
 
 The vast majority of source code artifacts are already indexed by their git object identifiers (gitoids) as git objects of type blob.
 
