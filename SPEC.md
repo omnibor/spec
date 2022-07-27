@@ -107,7 +107,7 @@ For this reason GitBOM uses the gitoid for an artifact as its artifact ID.
 
 Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  The [gitoid URI spec](https://www.iana.org/assignments/uri-schemes/prov/gitoid) uses different prefixes,  `gitoid:blob:sha1` or `gitoid:blob:sha256`, to distinguish which algorithm is being used for computing the gitoid of a blob.   This document adopts the gitoid uri prefixes to distinguish Gitoid Identifier Types.  This approach is anticipated to extend gracefully as git adopts new hash types in the future.
 
-All subsequent references to mandatory all identifiier types in this document should be interpretted to mean the list:
+All subsequent references to mandatory identifier types in this document should be interpreted to mean the list:
 
 - gitoid:blob:sha1
 - gitoid:blob:sha256
