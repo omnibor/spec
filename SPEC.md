@@ -98,13 +98,13 @@ A build tool is something which reads one or more input artifacts and writes one
 ## Specifications
 ### Artifact ID
 
-A hash function over the []byte of an artifact satisfy the canonical, unique, immutable requirements for an artifact identifier.
+A hash function over the byte array (`[]byte`) of an artifact satisfy the canonical, unique, immutable requirements for an artifact identifier.
 
-The vast majority of the source code artifacts are already indexed by git object id (gitoids) as git objects of type blob.
+The vast majority of source code artifacts are already indexed by their git object identifiers (gitoids) as git objects of type blob.
 
-For this reason GitBOM uses the git object id (gitoid) (as a blob) for an artifact as its artifact ID.  
+For this reason GitBOM uses the gitoid for an artifact as its artifact ID. 
 
-Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  In order to distinguish between them we will use the gitoid uri prefixes of gitoid:blob:sha1 and gitoid:blob:sha256.
+Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  In order for GitBOM to support both algorithms and distinguish between them, Gitoid Identifier Types are created by adding the prefixes of `gitoid:blob:sha1` or `gitoid:blob:sha256`.
 
 All subsequent references to mandatory all identifiier types in this document should be interpretted to mean the list:
 
@@ -117,7 +117,7 @@ A GitBOM document describes the immediate children of an artifact in the Artifac
 
 A GitBOM document utilizes precisely one identifier type.
 
-### GitBOM identifier
+### GitBOM Identifier
 
 A GitBOM document is identified by computing its identifier as an artifact with the identifier type used for identifiers within the GitBOM document itself.
 
@@ -158,7 +158,7 @@ A child artifact which is itself a derived artifact would be represented by
 blob⎵${artifact id of child}⎵bom⎵${GitBOM identifier of child's GitBOM document}\n
 ```
 
-The child artifact redords must be written to the GitBOM Document in lexical order.
+The child artifact records must be written to the GitBOM Document in lexical order.
 
 The artifact id and GitBOM document id must both be of the identifier type declared in the GitBOM document header.
 
@@ -171,18 +171,18 @@ Each build tool should embed into the output artifact a new line delimited, lexi
 
 ### GitBOM Document Construction by a Build Tool
 
-A build tool creating an output artifact must compute a GitBOM document of each mandatory artifact id type.
+A build tool creating an output artifact must compute a GitBOM Document of each mandatory artifact id type.
 
 For each input artifact the build tool must:
 
 1. Compute the git object id of the input - ${artifact identifier}
-2. Examine the input for an embedded GitBOM identifier - ${gitbom idenfitier}
+2. Examine the input for an embedded GitBOM Document Identifier - ${gitbom document identifier}
 
-The build tool must persist a GitBOM document using the ${artifact identifier} and ${gitbom identifier} for each input.
+The build tool must persist a GitBOM Document using the ${artifact identifier} and ${gitbom document identifier} for each input.
 
 ### GitBOM Document persistence by a Build Tool
 
-Each build tool should persist all GitBOM documents it generates.
+Each build tool should persist all GitBOM Documents it generates.
 
 Generically, GitBOM persistence can be thought of as having an abstract API:
 ```
