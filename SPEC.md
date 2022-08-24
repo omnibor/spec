@@ -146,7 +146,7 @@ All identifiers in a GitBOM Document MUST be of the Gitoid Identifier Type decla
 
 #### GitBOM Document Child Records
 
-The GitBOM Document after the header consists of a list of newline delimited child records
+The GitBOM Document after the header consists of a list of newline terminated child records
 
 A child artifact which is itself a leaf artifacts would be represented by
 
@@ -165,7 +165,7 @@ The artifact id and GitBOM Document id must both be of the Gitoid Identifier Typ
 
 ### GitBOM Identifier Embedding
 
-Each build tool should embed into the output artifact a new line delimited, lexically ordered, list of GitBOM identifiers for each mandatory Gitoid Identifier Type in a manner:
+Each build tool should embed into the output artifact a new line terminated, lexically ordered, list of GitBOM identifiers for each mandatory Gitoid Identifier Type in a manner:
 
 1. Appropriate to the type of artifact
 2. Generally agreed upon for that artifact
@@ -179,7 +179,8 @@ For each input artifact the build tool must:
 1. Compute the git object id of the input - ${artifact identifier}
 2. Examine the input for an embedded GitBOM Document Identifier - ${gitbom document identifier}
 
-The build tool must persist a GitBOM Document using the ${artifact identifier} and ${gitbom document identifier} for each input.
+The build tool must persist a GitBOM Document using the ${artifact identifier} and
+${gitbom document identifier} for each input.
 
 ### GitBOM Document persistence by a Build Tool
 
@@ -187,13 +188,17 @@ Each build tool should persist all GitBOM Documents it generates.
 
 Generically, GitBOM persistence can be thought of as having an abstract API:
 ```
-WriteGitBOM(GitBOM id,GitBOM contents) returns error
+WriteGitBOM(GitBOM id,GitBOM contents)
 ReadGitBOM(GitBOM id) returns GitBOM Contents
 ```
 
-WriteGitBOM should check that GitBOM id matches GitBOM contents and return an error if it does not.
+WriteGitBOM should:
 
-####  GitBOM Document persistence by a Build Tool to its local filesystem
+- Check that GitBOM id matches GitBOM contents and return an error if it does not.
+- Check that the GitBOM Document follows the GitBOM Document format and return an error if it does not.
+ 
+#### GitBOM Document persistence by a Build Tool to its local filesystem
+
 If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM Document to ```${GITBOM_DIR}/objects/${GitBOMID:0:2}/${GitBOMID:2:}``` where ```${artifact id}``` is the GitBOM id in lowercase hexidecimal.
 
 ### Build tool persistence of related metadata
@@ -202,10 +207,14 @@ If the build tool has additional metadata to persist that makes referece to the 
 it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```${GITBOM_DIR}/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
 
 ### Build tool selection of GITBOM_DIR
-GITBOM_DIR document should be set in order of precedence by:
+GITBOM_DIR should be set in order of precedence by:
 1.  A non-empty env variable named GITBOM_DIR
 2.  A build tool specific flag
 3.  A subdirectory ```.bom.info/``` of the directory to which it is writing out the artifact
+
+- The presence of an empty GITBOM_DIR env var should be taken as a signal to skip gitbom generation
+- The lack of a GITBOM_DIR env var should not be taken as a signal to _not_ generate a gitbom.
+
 ## Annex A
 
 
