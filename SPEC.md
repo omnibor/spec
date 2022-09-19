@@ -155,6 +155,37 @@ When persisting an output artifact to a file system, if the build tool has addit
 it should persist that metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```.bom/metadata/${tool}/```.  Filenaming and subdirectory structure below that point is at the discretion of the build tool.
 ## Annex A
 
+## Annex B
+
+### Build tool selection of gitoid type
+
+GITOID_BLOB_TYPE should be set in order of precedence by:
+1. A non-empty environment variable named GITOID_BLOB_TYPE.
+2. A build tool specific flag.
+The value of GITOID_BLOB_TYPE should contain the gitoid type. It may contain multiple gitoid types separated by comma (e.g., sha1,sha256). The build tool should generate the gitoids for all specified types. The build tool should implement a default gitoid type that should be used when no flag is provided.
+The build tool should report an error if the requested gitoid type is not supported.
+
+
+### Gitoid persistence by a Build Tool in ELF Objects/Executables
+When persisting the gitoid to an ELF object or an ELF executable, the build tool should create a section ```.note.gitbom``` of type SHT_NOTE and place the gitoid in the descriptor field of the Note entry. Multiple Note entries should be created, one for each gitoid type when multiple gitoid types are involved. Each Note entry must contain the following fields in the same order as given below:
+1. namesz (4 bytes): This field must be set to a value of 8, the length of the 'owner' field (including padding) in bytes.
+2. descz (4 bytes): This field must contain the length of the gitoid in bytes.
+3. type (4 bytes): This field must contain the value associated with one of the reserved gitoid types or a custom type.
+   The values for the reserved types are in the range of 0x0000 to 0xfffe. Some of the Gitoid types with reserved values are given below:
+   ```{ NT_GITOID_BLOB_SHA1 = 0x0,
+	NT_GITOID_BLOB_SHA224 = 0x1,
+	NT_GITOID_BLOB_SHA256 = 0x2,
+	NT_GITOID_BLOB_SHA384 = 0x3,
+	NT_GITOID_BLOB_SHA512 = 0x4,
+	NT_GITOID_BLOB_SHA512_224 = 0X5,
+	NT_GITOID_BLOB_SHA512_256 = 0x6,
+	NT_GITOID_BLOB_SHA3_224 = 0x7,
+	NT_GITOID_BLOB_SHA3_256 = 0x8,
+	NT_GITOID_BLOB_SHA3_384 = 0x9,
+	NT_GITOID_BLOB_SHA3_512 = 0x10,
+      }```
+   Custom gitoid types must use a value in the range of 0xfff0 to 0xffff.
+4. owner (8 bytes): This field must contain the string "GITBOM\0\0", padded to 8 bytes.
+5. descriptor (variable length): This field must contain the gitoid as raw bytes, whose length is the same as the value in 'descz' field.
 
 ## Bibliography
-
