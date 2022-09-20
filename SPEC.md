@@ -168,24 +168,20 @@ The build tool should report an error if the requested gitoid type is not suppor
 
 ### Gitoid persistence by a Build Tool in ELF Objects/Executables
 When persisting the gitoid to an ELF object or an ELF executable, the build tool should create a section ```.note.gitbom``` of type SHT_NOTE and place the gitoid in the descriptor field of the Note entry. Multiple Note entries should be created, one for each gitoid type when multiple gitoid types are involved. Each Note entry must contain the following fields in the same order as given below:
-1. namesz (4 bytes): This field must be set to a value of 8, the length of the 'owner' field (including padding) in bytes.
+1. namesz (4 bytes): This field must be set to a value of 7, the length of the 'owner' field (```GITBOM\0```) in bytes.
 2. descz (4 bytes): This field must contain the length of the gitoid in bytes.
-3. type (4 bytes): This field must contain the value associated with one of the reserved gitoid types or a custom type.
-   The values for the reserved types are in the range of 0x0000 to 0xfffe. Some of the Gitoid types with reserved values are given below:
+3. type (4 bytes): This field must contain the value associated with one of the reserved gitoid types or a custom artifact identifier type.
+   The values for the reserved types are in the range of 0x00000000 to 0x7fffffff. Permissible gitoid types with reserved values are:
    ```{ NT_GITOID_BLOB_SHA1 = 0x0,
-	NT_GITOID_BLOB_SHA224 = 0x1,
-	NT_GITOID_BLOB_SHA256 = 0x2,
-	NT_GITOID_BLOB_SHA384 = 0x3,
-	NT_GITOID_BLOB_SHA512 = 0x4,
-	NT_GITOID_BLOB_SHA512_224 = 0X5,
-	NT_GITOID_BLOB_SHA512_256 = 0x6,
-	NT_GITOID_BLOB_SHA3_224 = 0x7,
-	NT_GITOID_BLOB_SHA3_256 = 0x8,
-	NT_GITOID_BLOB_SHA3_384 = 0x9,
-	NT_GITOID_BLOB_SHA3_512 = 0x10,
+	NT_GITOID_BLOB_SHA256 = 0x1,
       }```
-   Custom gitoid types must use a value in the range of 0xfff0 to 0xffff.
+   Custom artifact identifier types must use a value in the range of 0x80000000 to 0xffffffff.
 4. owner (8 bytes): This field must contain the string "GITBOM\0\0", padded to 8 bytes.
 5. descriptor (variable length): This field must contain the gitoid as raw bytes, whose length is the same as the value in 'descz' field.
+
+#### Recording multiple gitoids
+If multiple gitoids are to be recorded in the Note section,
+1. There should be only one Note entry for each gitoid type.
+2. The Note entries should be in ascending order of gitoid type.
 
 ## Bibliography
