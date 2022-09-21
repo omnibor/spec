@@ -101,9 +101,9 @@ A build tool is something which reads one or more input artifacts and writes one
 Because two artifacts are equivalent if and only if their binary representations are equal, a hash function may be applied to the binary representation of an artifact to yield an identifier which satisfies the canonical, unique, and immutable requirements of artifact identifiers.
 
 ### Artifact Identifier Types
-The vast majority of source code artifacts are already indexed by their git object identifiers (gitoids) as git objects of type blob.
+The majority of source code artifacts are already stored in git and indexed by their git object identifiers ("gitoids") as git objects of type "blob".
 
-For this reason GitBOM uses the gitoid for an artifact as its artifact ID.
+For this reason, GitBOM has chosen to use the "gitoid" of an Artifact as its Artifact Identifier.
 
 Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  The [gitoid URI spec](https://www.iana.org/assignments/uri-schemes/prov/gitoid) uses different prefixes,  `gitoid:blob:sha1` or `gitoid:blob:sha256`, to distinguish which algorithm is being used for computing the gitoid of a blob.   This document adopts the gitoid uri prefixes to distinguish Artifact Identifier Types.  This approach is anticipated to extend gracefully as git adopts new hash types in the future.
 
