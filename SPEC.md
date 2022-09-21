@@ -58,7 +58,7 @@ An artifact is any object of interest that can be represented as arrays of bytes
 
 ### Artifact Equivalency
 
-Two artifacts are equivalent if and only if `[]byte(artifact1) == []byte(artifact2)`
+Two artifacts are equivalent if and only if their binary representations are equal. This can be expressed in pseudocode with the following expression: []byte(artifact1) == []byte(artifact2)
 
 ### Derived Artifacts
 
@@ -98,7 +98,7 @@ A build tool is something which reads one or more input artifacts and writes one
 ## Specifications
 ### Artifact ID
 
-A hash function over the []byte of an artifact satisfies the canonical, unique, immutable requirements for an artifact identifier.
+Because two artifacts are equivalent if and only if their binary representations are equal, a hash function may be applied to the binary representation of an artifact to yield an identifier which satisfies the canonical, unique, and immutable requirements of artifact identifiers.
 
 ### Artifact Identifier Types
 The vast majority of source code artifacts are already indexed by their git object identifiers (gitoids) as git objects of type blob.
