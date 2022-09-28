@@ -29,11 +29,16 @@ Example:
 #### Build tool persistence of related metadata
 
 A build tool may persist additional metadata to that makes reference to the Artifact Dependency Graph (ADG).
-It should persist such metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```${GITBOM_DIR}/metadata/${tool}/```.  ```${tool}``` should be a name uniquely associated with the build tool.
+It should persist such metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```${GITBOM_DIR}/metadata/${context}/```.  
 
-Subdirectory structure, filenaming, and file schema below that point are at the discretion of the build tool.
+For metadata specific to a particular build tool ```${context}``` should be a name uniquely associated with the build tool.  Build tools should report their selection of ```${context}``` subdirectory name to the GitBOM spec for inclusion in a list to preclude ```${context}``` collision.
+
+Metadata persisted by multiple build tools in the same way should write a specification for that metadata.  Such specs must include the ```${context}``` for that metadata.  Such specs should be reported to the GitBOM spec for inclusion in a list to preclude ```${context}``` collision.
+
+Subdirectory structure, filenaming, and file schema below that point are at the discretion of the build tool for build tool specific metadata or the metadata spec for common metadata.
 
 #### Build tool selection of GITBOM_DIR
+
 GITBOM_DIR should be set in order of precedence by:
 1.  A non-empty env variable named GITBOM_DIR
 2.  A build tool specific flag
