@@ -163,6 +163,10 @@ The child artifact records must be written to the GitBOM Document in lexical ord
 
 The artifact id and GitBOM Document id must both be of the Artifact Identifier Type declared in the GitBOM Document header.
 
+#### GitBOM Document Character Encoding
+
+All characters in a GitBOM document are encoded in ascii.  Please note: all '\n' must be encoded as '\n' characters, *not* the line delimiter of the platform.
+
 ### GitBOM Identifier Embedding
 
 Each build tool should embed into the output artifact a new line terminated, lexically ordered, list of GitBOM identifiers for each mandatory Artifact Identifier Type in a manner:
