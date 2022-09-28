@@ -3,7 +3,7 @@
 Annex A documents known methods of persisting GitBOM Documents to various stores.
 ### GitBOM Document persistence by a Build Tool to its local filesystem
 
-If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM Document to ```${GITBOM_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '/'}/${GitBOMID:0:2}/${GitBOMID:2:}``` where ```${GitBOMID}``` is the GitBOM id in lowercase hexidecimal without leading zeros suppressed.
+If a build tool persists GitBOM information to its local filesystem, the build tool should write out the GitBOM Document to ```${GITBOM_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '/'}/${GitBOMID:0:2}/${GitBOMID:2:}``` where ```${GitBOMID}``` is the GitBOM id in lowercase hexidecimal without leading zeros NOT suppressed.
 
 Example:
 
