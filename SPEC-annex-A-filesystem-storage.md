@@ -23,7 +23,7 @@ to do so it should for each artifact persist a symlink:
 Example:
 
 ```
-.adg/a2g/gitoid/blob/sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301 -> .adg/objects/gitoid/blob/sha1/1d/6e79da5e380e5d3e5adcf899c4d65c0e80bfb3
+.adg/a2g/gitoid/blob/sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301 -> ../../../../../objects/gitoid/blob/sha1/1d/6e79da5e380e5d3e5adcf899c4d65c0e80bfb3
 ```
 
 #### Build tool persistence of related metadata
@@ -33,7 +33,7 @@ It should persist such metadata to a subdirectory of the directory to which the 
 
 For metadata specific to a particular build tool ```${context}``` should be a name uniquely associated with the build tool.  Build tools should report their selection of ```${context}``` subdirectory name to the GitBOM spec for inclusion in a list to preclude ```${context}``` collision.
 
-Metadata persisted by multiple build tools in the same way should write a specification for that metadata.  Such specs must include the ```${context}``` for that metadata.  Such specs should be reported to the GitBOM spec for inclusion in a list to preclude ```${context}``` collision.
+Metadata persisted by multiple build tools in the same way should be documented in a specification for that metadata.  Such specs must include the ```${context}``` for that metadata.  Such specs should be reported to the GitBOM spec for inclusion in a list to preclude ```${context}``` collision.
 
 Subdirectory structure, filenaming, and file schema below that point are at the discretion of the build tool for build tool specific metadata or the metadata spec for common metadata.
 
