@@ -16,7 +16,7 @@ Example:
 A build tool should choose to persist a mapping between artifacts and their corresponding GitBOM documents.  If it chooses
 to do so it should for each artifact persist a symlink:
 
-```${GITBOM_DIR}/a2g/${Artifact Identifier Type uri prefix with ':' replaced by '/'}/${artifact id}:0:2}/${artifact id:2:} -> ${GITBOM_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '/'}/${GitBOMID:0:2}/${GitBOMID:2:}```
+```${GITBOM_DIR}/a2g/${Artifact Identifier Type uri prefix with ':' replaced by '/'}/${artifact id}:0:2}/${artifact id:2:} -> ${relative symlink to GitBOM document for artifact}```
 
 `a2g` is short for `artifact to graph`.
 
