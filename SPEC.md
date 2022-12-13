@@ -174,6 +174,11 @@ Each build tool should embed into the output artifact a new line terminated, lex
 1. Appropriate to the type of artifact
 2. Generally agreed upon for that artifact
 
+unless the user indicates a desire not to embed the GitBOM identifiers by either:
+
+1. Setting GITBOM_NO_EMBED to a non-empty value
+2. A build tool specific flag
+
 ### GitBOM Document Construction by a Build Tool
 
 A build tool creating an output artifact must compute a GitBOM Document of each mandatory artifact id type.
