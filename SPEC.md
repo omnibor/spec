@@ -1,4 +1,4 @@
- # GitBOM Specification
+ # OmniBOR Specification
 ## Version 1.0.0
 ## Status Pre-draft
 
@@ -17,7 +17,7 @@ Attention is drawn to the possibility that some of the elements of this document
 
 Any trade name used in this document is information given for the convenience of users and does not constitute an endorsement.
 
-This document was prepared by the GitBOM Community.
+This document was prepared by the OmniBOR Community.
 
 Known patent licensing exclusions are available in the specification’s repository’s NOTICES.md file.
 
@@ -103,7 +103,7 @@ Because two artifacts are equivalent if and only if their binary representations
 ### Artifact Identifier Types
 The majority of source code artifacts are already stored in git and indexed by their git object identifiers ("gitoids") as git objects of type "blob".
 
-For this reason, GitBOM has chosen to use the "gitoid" of an Artifact as its Artifact Identifier.
+For this reason, OmniBOR has chosen to use the "gitoid" of an Artifact as its Artifact Identifier.
 
 Git currently supports two varieties of gitoids.  One is based on SHA1 and is in common use.  The other is based on SHA256 and has been very slow to garner adoption.  The [gitoid URI spec](https://www.iana.org/assignments/uri-schemes/prov/gitoid) uses different prefixes,  `gitoid:blob:sha1` or `gitoid:blob:sha256`, to distinguish which algorithm is being used for computing the gitoid of a blob.   This document adopts the gitoid uri prefixes to distinguish Artifact Identifier Types.  This approach is anticipated to extend gracefully as git adopts new hash types in the future.
 
@@ -112,19 +112,19 @@ All subsequent references to mandatory identifier types in this document should 
 - gitoid:blob:sha1
 - gitoid:blob:sha256
 
-### GitBOM Document
+### OmniBOR Document
 
-A GitBOM Document describes the immediate children of an artifact in the Artifact Dependency Graph (ADG).
+A OmniBOR Document describes the immediate children of an artifact in the Artifact Dependency Graph (ADG).
 
-A GitBOM Document utilizes precisely one Artifact Identifier Type.
+A OmniBOR Document utilizes precisely one Artifact Identifier Type.
 
-### GitBOM Identifier
+### OmniBOR Identifier
 
-A GitBOM Document is identified by computing its identifier as an artifact with the Artifact Identifier Type used for identifiers within the GitBOM Document itself.
+A OmniBOR Document is identified by computing its identifier as an artifact with the Artifact Identifier Type used for identifiers within the OmniBOR Document itself.
 
-#### GitBOM Document Header
+#### OmniBOR Document Header
 
-In order to distinguish the type of identifier used in the GitBOM Document, it begins with a single newline terminated header line:
+In order to distinguish the type of identifier used in the OmniBOR Document, it begins with a single newline terminated header line:
 
 ```
 ${Artifact Identifier Type uri prefix}\n
@@ -142,11 +142,11 @@ or
 gitoid:blob:sha256\n
 ```
 
-All identifiers in a GitBOM Document MUST be of the Artifact Identifier Type declared in the header.
+All identifiers in a OmniBOR Document MUST be of the Artifact Identifier Type declared in the header.
 
-#### GitBOM Document Child Records
+#### OmniBOR Document Child Records
 
-The GitBOM Document after the header consists of a list of newline terminated child records
+The OmniBOR Document after the header consists of a list of newline terminated child records
 
 A child artifact which is itself a leaf artifacts would be represented by
 
@@ -156,34 +156,34 @@ blob⎵${artifact id of child}\n
 
 A child artifact which is itself a derived artifact would be represented by
 ```
-blob⎵${artifact id of child}⎵bom⎵${GitBOM identifier of child's GitBOM Document}\n
+blob⎵${artifact id of child}⎵bom⎵${OmniBOR identifier of child's OmniBOR Document}\n
 ```
 
-The child artifact records must be written to the GitBOM Document in lexical order.
+The child artifact records must be written to the OmniBOR Document in lexical order.
 
-The artifact id and GitBOM Document id must both be of the Artifact Identifier Type declared in the GitBOM Document header.
+The artifact id and OmniBOR Document id must both be of the Artifact Identifier Type declared in the OmniBOR Document header.
 
-#### GitBOM Document Character Encoding
+#### OmniBOR Document Character Encoding
 
-All characters in a GitBOM document are encoded in ascii.  Please note: all '\n' must be encoded as '\n' characters, *not* the line delimiter of the platform.
+All characters in a OmniBOR document are encoded in ascii.  Please note: all '\n' must be encoded as '\n' characters, *not* the line delimiter of the platform.
 
-### GitBOM Identifier Embedding
+### OmniBOR Identifier Embedding
 
-Each build tool should embed into the output artifact a new line terminated, lexically ordered, list of GitBOM identifiers for each mandatory Artifact Identifier Type in a manner:
+Each build tool should embed into the output artifact a new line terminated, lexically ordered, list of OmniBOR identifiers for each mandatory Artifact Identifier Type in a manner:
 
 1. Appropriate to the type of artifact
 2. Generally agreed upon for that artifact
 
-### GitBOM Document Construction by a Build Tool
+### OmniBOR Document Construction by a Build Tool
 
-A build tool creating an output artifact must compute a GitBOM Document of each mandatory artifact id type.
+A build tool creating an output artifact must compute a OmniBOR Document of each mandatory artifact id type.
 
 For each input artifact the build tool must:
 
 1. Compute the git object id of the input - ${artifact identifier}
-2. Examine the input for an embedded GitBOM Document Identifier - ${gitbom document identifier}
+2. Examine the input for an embedded OmniBOR Document Identifier - ${omnibor document identifier}
 
-The build tool must persist a GitBOM Document using the ${artifact identifier} and
-${gitbom document identifier} for each input.
+The build tool must persist a OmniBOR Document using the ${artifact identifier} and
+${omnibor document identifier} for each input.
 
 ## Bibliography

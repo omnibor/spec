@@ -7,7 +7,7 @@ Applications/protocols that use this scheme name:
 Contact:
      Registering party: Ed Warnicke <eaw@cisco.com>
 
-Scheme Creator: GitBOM
+Scheme Creator: OmniBOR
 
 Change controller:
     Either the registering party or someone verified to represent

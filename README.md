@@ -1,1 +1,1 @@
-Repo for the GitBOM specification
+Repo for the OmniBOR specification
