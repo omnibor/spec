@@ -38,4 +38,4 @@ Interoperability considerations:
 Unknown, use with care.
 
 Security considerations:
-The general security considerations from Section 7 of RFC 3986 apply, but no other security considerations have been identified at the  time of registration.
+The use of URIs does not inherently provide any security. See Section 7 of RFC 3986 for a description of URI and security concerns.  No other security considerations have been identified at the  time of registration. 
