@@ -32,7 +32,7 @@ gitoid stands for Git Object ID.  Git is an object store, which currently suppor
 
 The git object id is computed by applying a hash to the git object.  Currently, the most common hash is sha1, but there is some effort to transition to sha256 over time.
 
-A gitoid URI identifies a git object independent of any particular git repository.  Given a byte array and a gitoid, it should be possible to construct the analogous git object header from the gitoid, as gitoid contains the git object type.  By prepending the constructed git object header to the byte array and performing the hash indicated in the gitoid, it should be possible to determine whether or not the gitoid matches the byte array.
+A gitoid URI identifies a git object independent of any particular git repository.  Given a byte array and a gitoid, it is possible to construct the analogous git object header from the gitoid, as gitoid contains the git object type.  By prepending the constructed git object header to the byte array and performing the hash indicated in the gitoid, it is possible to determine whether or not the gitoid matches the byte array.
 
 Interoperability considerations:
 Unknown, use with care.
