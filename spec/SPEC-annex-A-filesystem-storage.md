@@ -27,8 +27,5 @@ Subdirectory structure, filenaming, and file schema below that point are at the 
 OMNIBOR_DIR should be set in order of precedence by:
 1.  A non-empty env variable named OMNIBOR_DIR
 2.  A build tool specific flag
-3.  A subdirectory ```.adg/``` of the directory to which it is writing out the artifact
 
-- The presence of an empty OMNIBOR_DIR env var should be taken as a signal to skip OmniBOR generation
-- The lack of a OMNIBOR_DIR env var should not be taken as a signal to _not_ generate a OmniBOR.
-
+- The absence of specification of an OMNIBOR_DIR should be taken as a signal to skip OmniBOR generation.
