@@ -11,21 +11,6 @@ Example:
 .adg/objects/gitoid_blob_sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301
 ```
 
-#### Build tool persistence of artifact to OmniBOR Document mapping
-
-A build tool should choose to persist a mapping between artifacts and their corresponding OmniBOR documents.  If it chooses
-to do so it should for each artifact persist a symlink:
-
-```${OMNIBOR_DIR}/a2g/${Artifact Identifier Type uri prefix with ':' replaced by '_'}/${artifact id}:0:2}/${artifact id:2:} -> ${relative symlink to OmniBOR document for artifact}```
-
-`a2g` is short for `artifact to graph`.
-
-Example:
-
-```
-.adg/a2g/gitoid_blob_sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301 -> ../../../../../objects/gitoid/blob/sha1/1d/6e79da5e380e5d3e5adcf899c4d65c0e80bfb3
-```
-
 #### Build tool persistence of related metadata
 
 A build tool may persist additional metadata to that makes reference to the Artifact Dependency Graph (ADG).
