@@ -3,7 +3,7 @@
 ## Status Pre-draft
 
  
-This specification is subject to the Community Specification License 1.0, available at [https://github.com/git-bom/spec](https://github.com/git-bom/spec).
+This specification is subject to the Community Specification License 1.0, available at [https://github.com/omnibor/spec](https://github.com/omnibor/spec).
 
 A guide on writing standards produced by the ISO/TMB and is available at https://www.iso.org/files/live/sites/isoorg/files/developing_standards/docs/en/how-to-write-standards.pdf.
 
@@ -21,7 +21,7 @@ This document was prepared by the OmniBOR Community.
 
 Known patent licensing exclusions are available in the specification’s repository’s NOTICES.md file.
 
-Any feedback or questions on this document should be directed to specifications repository, located at https://github.com/git-bom/spec.
+Any feedback or questions on this document should be directed to specifications repository, located at https://github.com/omnibor/spec.
 
 THESE MATERIALS ARE PROVIDED “AS IS.” The Contributors and Licensees expressly disclaim any warranties (express, implied, or otherwise), including implied warranties of merchantability, non-infringement, fitness for a particular purpose, or title, related to the materials.  The entire risk as to implementing or otherwise using the materials is assumed by the implementer and user. IN NO EVENT WILL THE CONTRIBUTORS OR LICENSEES BE LIABLE TO ANY OTHER PARTY FOR LOST PROFITS OR ANY FORM OF INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER FROM ANY CAUSES OF ACTION OF ANY KIND WITH RESPECT TO THIS DELIVERABLE OR ITS GOVERNING AGREEMENT, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), OR OTHERWISE, AND WHETHER OR NOT THE OTHER MEMBER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
