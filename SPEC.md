@@ -85,7 +85,7 @@ It should be possible to identify each artifact with an artifact ID with the fol
 
 ### Artifact Dependency Graph (ADG)
 
-The Artifact Dependency Graph (ADG) of an artifact is the recursive DAG (Directed Acyclic Graph) of all the `input artifacts` that are transformed by a build tool] into that artifact.  It includes the direct input artifacts, and the recursive set of input artifacts to each input artifact, all the way down the graph.
+The Artifact Dependency Graph (ADG) of an artifact is the recursive DAG (Directed Acyclic Graph) of all the `input artifacts` that are transformed by a build tool into that artifact.  It includes the direct input artifacts, and the recursive set of input artifacts to each input artifact, all the way down the graph.
 
 #### Artifact Dependency Graph (ADG) singularity
 
