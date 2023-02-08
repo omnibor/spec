@@ -27,11 +27,11 @@ THESE MATERIALS ARE PROVIDED “AS IS.” The Contributors and Licensees express
 
 ## Introduction
 
-Modern Software Supply Chains face many challenges: security, compliance, provenance, and others.  All of them are hamstrung by the inability to easily and reliably capture and express a complete, concise, verifiable accounting of exactly **what** inputs where built into software.
+Modern software supply chains face many challenges: security, compliance, provenance, and others.  All of them are hamstrung by the inability to easily and reliably capture and express a complete, concise, verifiable accounting of exactly **what** inputs were built into software.
 
 OmniBOR applies the [Unix Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) of "do one thing, and do it well." to construct a complete, concise, and verifiable Artifact Dependency Graph (ADG) for every software artifact enabling:
 
-- Run-time detection of potential vulnerabilities, regardless of the depth in the [ADG](/glossary/artifact_dependency_graph) for every software artifact from which that vulnerability originated
+- Run-time detection of potential vulnerabilities, regardless of the depth in the Artifact Dependency Graph (ADG) for every software artifact from which that vulnerability originated
 
 - Post-exploit forensics
 
