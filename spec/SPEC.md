@@ -43,7 +43,57 @@ NOT THE OTHER MEMBER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## Introduction
 
-Type text.
+Software supply chain security is increasing in importance, as the scale and
+severity of supply supply chain attacks increases as well. While new and
+existing standards are developing to describe the supply chain dependencies of
+software (via Software Bills of Material \[SBOM\]), or to describe how a
+software artifact is produced (via the Supply-Chain Levels for Software
+Artifacts \[SLSA\] standard), we still lack a reliable mechanism for
+_precisely_ specifying the inputs used to produce a software artifact.
+
+The OmniBOR standard defines three concepts, which together enable the
+consistent, reproducible, and embeddable encoding of the exact inputs used to
+build a software artifact: Artifact Identifiers, Input Manifests, and Artifact
+Dependency Graphs.
+
+An Artifact Identifier is a content-based identifier of a single input (for
+example, a single file) used to build a software artifact. Identifiers are
+reproducible, meaning two individuals will always derive the same identifier
+for the same input.
+
+Next, an Input Manifest lists the Artifact Identifier of every input used to
+produce an artifact. For example, if an executable is compiled by linking
+together a collection of object files, the Artifact Identifier of every object
+file would be listed in the Input Manifest for the executable. Input manifests
+can be embedded directly into executable files, or can be provided in a
+separate file alongside the artifact whose inputs they describe.
+
+Finally, a collection of Input Manifests can be combined to produce an Artifact
+Dependency Graph. The Artifact Dependency Graph is a complete description of
+all inputs, direct or transitive, used to produce a software artifact.
+
+Returning to the example of building an executable: the executable's Input
+Manifest would list the Artifact Identifier of every object file, and each
+object file would have its own Input Manifest listing the Artifact Identifier
+of each of their source files. This set of Input Manifests can then be
+resolved to produce an overall graph completely describing the inputs which
+produced the executable.
+
+With the Artifact Dependency Graph, consumers of this information could then
+exactly identify when two artifacts were produced with exactly identical
+inputs, and if inputs vary, could identify the exact inputs which vary and
+observe how that affects the entirety of the graph. When coupled with
+SBOM information about third-party dependencies and with provenance
+information from SLSA attestations, this can provide highly specific and
+accurate identification of supply chain differences.
+
+This Artifact Dependency Graph may also be used to supplement vulnerability
+information by precisely identifying affects files or resolving the impacts
+of changes to those files across all users of those projects. By leveraging
+transparent inclusion of Input Manifests into executable and other formats,
+users would also gain the benefits of high precision supply chain information
+without manually recording or updating those manifests as projects develop over
+time.
 
 ##	Scope
 
