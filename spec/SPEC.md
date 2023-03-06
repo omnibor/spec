@@ -2,7 +2,7 @@
 
 | Field   | Value |
 |:--------|:------|
-| Version | 0.1.0 |
+| Version | 0.1   |
 | Status  | Draft |
 
 ## Foreword
@@ -15,7 +15,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 [RFC 2119][rfc_2119].
 
 Attention is drawn to the possibility that some of the elements of this
-document may be the subject of patent rights. No party shall not be held
+document may be the subject of patent rights. No party shall be held
 responsible for identifying any or all such patent rights.
 
 Any trade name used in this document is information given for the convenience
@@ -23,8 +23,8 @@ of users and does not constitute an endorsement.
 
 This document was prepared by the OmniBOR Community.
 
-Known patent licensing exclusions are available in the specification's
-repository's NOTICES.md file.
+Known patent licensing exclusions are available in the specification
+repository's `NOTICES.md` file.
 
 Any feedback or questions on this document should be directed to the
 specification's repository, located at <https://github.com/omnibor/spec>.
@@ -54,7 +54,7 @@ limited to:
 - formats for artifact identifiers
 - formats for specifying graph relationships between artifacts
 - manner of embedding identifiers for ADGs, and other related
- data structures in artifacts of various types
+  data structures in artifacts of various types
 - guidance on metadata which references ADGs, and other related data structures
 - guidance for build tools for:
  - constructing ADGs, and other related data structures
@@ -65,7 +65,7 @@ limited to:
 
 ##	Normative References
 
-[gitoid uri][gitoid_uri]
+- [GitOID URI][gitoid_uri]
 
 ## Terms and Definitions
 
