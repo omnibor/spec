@@ -1,23 +1,18 @@
 # OmniBOR Specification
 
-## Version 1.0.0
+| Field   | Value |
+|:--------|:------|
+| Version | 0.1.0 |
+| Status  | Draft |
 
-## Status: Pre-draft
+## Foreword
 
 This specification is subject to the Community Specification License 1.0,
 available at <https://github.com/omnibor/spec>.
 
-A guide on writing standards produced by the ISO/TMB and is available at
-<https://www.iso.org/files/live/sites/isoorg/files/developing_standards/docs/en/how-to-write-standards.pdf>.
-
-A model manuscript of a draft International Standard (known as "The Rice
-Model") is available at <https://www.iso.org/iso/model_document-rice_model.pdf>.
-
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" as described in
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" are used as described in
 [RFC 2119][rfc_2119].
-
-## Foreword
 
 Attention is drawn to the possibility that some of the elements of this
 document may be the subject of patent rights. No party shall not be held
