@@ -43,13 +43,14 @@ NOT THE OTHER MEMBER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## Introduction
 
-Software supply chain security is increasing in importance, as the scale and
-severity of supply supply chain attacks increases as well. While new and
-existing standards are developing to describe the supply chain dependencies of
-software (via Software Bills of Material \[SBOM\]), or to describe how a
-software artifact is produced (via the Supply-Chain Levels for Software
-Artifacts \[SLSA\] standard), we still lack a reliable mechanism for
-_precisely_ specifying the inputs used to produce a software artifact.
+Software supply chains face many challenges: security and compliance chief
+among them. Often, projects are hamstrung by the inability to easily and
+reliably capture a complete, concise, verifiable accounting of exactly
+__what__ inputs were built into software. Without this information,
+identifying vulnerable software to patch or replace is difficult. While
+Software Bills of Material (SBOMs) help identify third-party components,
+they do not go far enough to precisely identify the exact inputs necessary
+for vulnerability management.
 
 The OmniBOR standard defines three concepts, which together enable the
 consistent, reproducible, and embeddable encoding of the exact inputs used to
@@ -59,7 +60,9 @@ Dependency Graphs.
 An Artifact Identifier is a content-based identifier of a single input (for
 example, a single file) used to build a software artifact. Identifiers are
 reproducible, meaning two individuals will always derive the same identifier
-for the same input.
+for the same input. With these identifiers, we can consistently and precisely
+identify any software artifact or its input, for use in forensics, accounting,
+and vulnerability management.
 
 Next, an Input Manifest lists the Artifact Identifier of every input used to
 produce an artifact. For example, if an executable is compiled by linking
@@ -83,9 +86,9 @@ With the Artifact Dependency Graph, consumers of this information could then
 exactly identify when two artifacts were produced with exactly identical
 inputs, and if inputs vary, could identify the exact inputs which vary and
 observe how that affects the entirety of the graph. When coupled with
-SBOM information about third-party dependencies and with provenance
-information from SLSA attestations, this can provide highly specific and
-accurate identification of supply chain differences.
+SBOM information about third-party dependencies, this can provide highly
+specific and accurate identification of supply chain differences and their
+causes.
 
 This Artifact Dependency Graph may also be used to supplement vulnerability
 information by precisely identifying affects files or resolving the impacts
