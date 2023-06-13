@@ -24,7 +24,7 @@ Subdirectory structure, filenaming, and file schema below that point are at the 
 
 #### Build tool selection of OMNIBOR_DIR
 
-OMNIBOR_DIR should be set in order of precedence by:
+OMNIBOR_DIR may be set by the following methods, listed in order of precedence:
 1.  A non-empty env variable named OMNIBOR_DIR
 1. A build tool specific flag
 2. A non-empty env variable named OMNIBOR_DIR
