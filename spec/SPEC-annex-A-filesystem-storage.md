@@ -28,4 +28,4 @@ OMNIBOR_DIR should be set in order of precedence by:
 1.  A non-empty env variable named OMNIBOR_DIR
 2.  A build tool specific flag
 
-- The absence of specification of an OMNIBOR_DIR should be taken as a signal to skip OmniBOR generation.
+The absence of specification of a location to write omnibor data via either the OMNIBOR_DIR or the build tool specific flag  may be taken as a signal to skip OmniBOR generation.
