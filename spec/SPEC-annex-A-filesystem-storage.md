@@ -26,6 +26,7 @@ Subdirectory structure, filenaming, and file schema below that point are at the 
 
 OMNIBOR_DIR should be set in order of precedence by:
 1.  A non-empty env variable named OMNIBOR_DIR
-2.  A build tool specific flag
+1. A build tool specific flag
+2. A non-empty env variable named OMNIBOR_DIR
 
 The absence of specification of a location to write omnibor data via either the OMNIBOR_DIR or the build tool specific flag  may be taken as a signal to skip OmniBOR generation.
