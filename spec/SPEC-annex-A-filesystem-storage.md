@@ -1,14 +1,15 @@
 ## Annex A
 
 Annex A documents known methods of persisting OmniBOR Documents to various stores.
-### OmniBOR Document persistence by a Build Tool to its local filesystem
 
-If a build tool persists OmniBOR information to its local filesystem, the build tool should write out the OmniBOR Document to ```${OMNIBOR_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '_'}/${OmniBORID:0:2}/${OmniBORID:2:}``` where ```${OmniBORID}``` is the OmniBOR id in lowercase hexidecimal without leading zeros NOT suppressed.
+### Input Manifest persistence by a Build Tool to its local filesystem
+
+If a build tool persists an Input Manifest to its local filesystem, the build tool should write out the Input Manifest to ```${OMNIBOR_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '_'}/${Input Manifest Identifier:0:2}/${Input Manifest Identifier:2:}``` where ```${Input Manifest Identifier}``` is Inpute Manifest Identifier in lowercase hexidecimal with leading zeros NOT suppressed.
 
 Example:
 
 ```
-.adg/objects/gitoid_blob_sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301
+.omnibor/objects/gitoid_blob_sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301
 ```
 
 #### Build tool persistence of related metadata
