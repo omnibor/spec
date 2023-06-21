@@ -16,11 +16,19 @@ Example:
 A build tool may persist additional metadata to that makes reference to the Artifact Dependency Graph (ADG).
 It should persist such metadata to a subdirectory of the directory to which the output artifact is being written of the form: ```${OMNIBOR_DIR}/metadata/${context}/```.  
 
-For metadata specific to a particular build tool ```${context}``` should be a name uniquely associated with the build tool.  Build tools should report their selection of ```${context}``` subdirectory name to the OmniBOR spec for inclusion in a list to preclude ```${context}``` collision.
+For metadata specific to a particular build tool ```${context}``` should be a name uniquely associated with the build tool.  For example: 
 
-Metadata persisted by multiple build tools in the same way should be documented in a specification for that metadata.  Such specs must include the ```${context}``` for that metadata.  Such specs should be reported to the OmniBOR spec for inclusion in a list to preclude ```${context}``` collision.
+- ```${OMNIBOR_DIR}/metadata/llvm```
+- ```${OMNIBOR_DIR}/metadata/clang```
+- ```${OMNIBOR_DIR}/metadata/go```
+- ```${OMNIBOR_DIR}/metadata/rustc```
+- ```${OMNIBOR_DIR}/metadata/gcc```
 
-Subdirectory structure, filenaming, and file schema below that point are at the discretion of the build tool for build tool specific metadata or the metadata spec for common metadata.
+Build tools should report their selection of ```${context}``` subdirectory name to the OmniBOR spec for inclusion in a list to preclude ```${context}``` collision.
+
+Metadata persisted by multiple build tools in the same way should be documented in a specification for that metadata.  Such specs must include the ```${context}``` for that metadata.  Such specs should be reported to the OmniBOR spec for inclusion in a list to preclude ```${context}``` collision.  For example, if a group of build tools decide to store metadata about file locations in a common format, they might choose to define a ```${context}``` ```filelocation``` in which case the metadata would be stored in ```${OMNIBOR_DIR}/metadata/filelocation```
+
+Subdirectory structure, filenaming, and file schema below ```${OMNIBOR_DIR}/metadata/${context}/``` are at the discretion of the build tool for build tool specific metadata or the metadata spec for common metadata.
 
 #### Build tool selection of OMNIBOR_DIR
 
