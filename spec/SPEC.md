@@ -216,7 +216,7 @@ with the Artifact Identifier Type used for identifiers within the Input Manifest
 itself.
 
 The Input Manifest Identifier for the Input Manifest of an artifact is sometimes
-referred to as the Input Manifest Identigier of the artifact.
+referred to as the Input Manifest Identifier of the artifact.
 
 #### Input Manifest Header
 
@@ -327,7 +327,7 @@ by a build tool into that artifact. It includes the direct input artifacts,
 and the recursive set of input artifacts to each input artifact, all the way
 down the graph.  
 
-Concretely the Artifact Dependency Graph (AGD) of an artifact is the
+Concretely the Artifact Dependency Graph (ADG) of an artifact is the
 Input Manifest Identifier of Artifact together with a collection of
 Input Manifests which includes:
 
