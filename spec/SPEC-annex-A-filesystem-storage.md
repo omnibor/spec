@@ -8,6 +8,9 @@ If a build tool persists an Input Manifest to its local filesystem, the build to
 
 Example:
 
+If ```OMNIBOR_DIR=.omnibor``` then the Input Manifest with gitoid:blob:sha1 Input Manifest Identifier
+0e8efd4cdf0d5bafcfcae658c2662a73b199b301 would be stored in:
+
 ```
 .omnibor/objects/gitoid_blob_sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301
 ```
