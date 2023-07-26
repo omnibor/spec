@@ -144,7 +144,7 @@ equal. This can be expressed in pseudocode with the following expression:
 It should be possible to identify each artifact with an artifact identifier with
 the following characteristics:
 
-- __Canonical__: Independent parties, presented with equivalent artifacts,
+- __Reproducible__: Independent parties, presented with equivalent artifacts,
   derive the same artifact identity.
 - __Unique__: Non-equivalent artifacts have distinct identities.
 - __Immutable__: An identified artifact can not be modified without also
@@ -261,7 +261,7 @@ blob⎵${artifact identifier of the input artifact}⎵bom⎵${input manifest ide
 
 ```⎵``` above refers to the ascii space character (0x20).
 
-Artifact identifiers in Input Records should be represented as a strings in hexidecmial.  For example
+Artifact identifiers in Input Records should be represented as a strings in lower case hexidecmial.  For example
 514516097a2f95c893f2a9685bcecfb85b7598e6.
 
 The input artifact records must be written to the Input Manifest in lexical
@@ -327,15 +327,12 @@ by a build tool into that artifact. It includes the direct input artifacts,
 and the recursive set of input artifacts to each input artifact, all the way
 down the graph.  
 
-Concretely the Artifact Dependency Graph (ADG) of an artifact is the
-Input Manifest Identifier of Artifact together with a collection of
-Input Manifests which includes:
+Concretely the Artifact Dependency Graph (ADG) of an Artifact is:
 
+- The set of Input Manifests defined by:
+  -  The Input Manifest of the Artifact
+  -  Any Input Manifest referenced in an Input Manifest in the set
 - The Input Manifest Identifier of the Artifact
-- A collection of Input Manifests which contains the set of Input Manifests defined by:
-  - The Input Manifest of the Artifact
-  - Any Input Manifest referenced in an Input Manifest in the set.
-
 ## Annexes
 
 - [Annex A - File System Storage](SPEC-annex-A-filesystem-storage.md)
