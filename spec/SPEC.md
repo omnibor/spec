@@ -202,10 +202,12 @@ be interpreted to mean the list:
 - `gitoid:blob:sha1`
 - `gitoid:blob:sha256`
 
-### Input Manifest
+### Artifact Input Manifest
 
-An Input Manifest for an Artifact enumerates the inputs to the
+An Artifact Input Manifest for an Artifact enumerates the inputs to the
 build tool that produced the artifact.  
+
+Hereafter in the spec Artifact Input Manifest will simply be referred to as Input Manifest.
 
 A given Input Manifest utilizes precisely one Artifact Identifier Type.
 
