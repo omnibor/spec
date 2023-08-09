@@ -333,7 +333,7 @@ Concretely the Artifact Dependency Graph (ADG) of an Artifact is:
 
 - The set of Input Manifests defined by:
   -  The Input Manifest of the Artifact
-  -  Any Input Manifest referenced in an Input Manifest in the set
+  -  Any Input Manifest referenced in an Input Manifest in the set (ie the transitive closure of the Input Manifests)
 - The Input Manifest Identifier of the Artifact
 ## Annexes
 
