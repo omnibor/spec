@@ -116,7 +116,7 @@ for artifacts. Including but not limited to:
 - guidance for build tools for:
   - constructing Input Manifests, ADGs, and other related data structures
   - conveying Input Manifests, ADGs, and other related data structures
-  - embedding identifiers for Input Manifests, and other related data structure's ids in artifacts
+  - embedding identifiers for Input Manifests, and other related data structures' ids in artifacts
   - manners of conveyance of Input Manifests, and other related data structure's
   - descriptions of use cases for which Input Manifests, ADGs, and other related data structures may be used
 
@@ -261,9 +261,9 @@ An input record for an artifact for which an Input Manifest Identifier is known 
 blob⎵${artifact identifier of the input artifact}⎵bom⎵${input manifest identifier of the input artifact}\n
 ```
 
-```⎵``` above refers to the ascii space character (0x20).
+```⎵``` above refers to the ASCII space character (0x20).
 
-Artifact identifiers in Input Records should be represented as a strings in lower case hexidecmial.  For example
+Artifact identifiers in Input Records should be represented as a strings in lower case hexadecimal.  For example
 514516097a2f95c893f2a9685bcecfb85b7598e6.
 
 The input artifact records must be written to the Input Manifest in lexical

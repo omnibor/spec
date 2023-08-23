@@ -4,12 +4,12 @@ Annex A documents known methods of persisting OmniBOR Documents to various store
 
 ### Input Manifest persistence by a Build Tool to its local filesystem
 
-If a build tool persists an Input Manifest to its local filesystem, the build tool should write out the Input Manifest to ```${OMNIBOR_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '_'}/${Input Manifest Identifier:0:2}/${Input Manifest Identifier:2:}``` where ```${Input Manifest Identifier}``` is Inpute Manifest Identifier in lowercase hexidecimal with leading zeros NOT suppressed.
+If a build tool persists an Input Manifest to its local filesystem, the build tool should write out the Input Manifest to ```${OMNIBOR_DIR}/objects/${Artifact Identifier Type uri prefix with ':' replaced by '_'}/${Input Manifest Identifier:0:2}/${Input Manifest Identifier:2:}``` where ```${Input Manifest Identifier}``` is Input Manifest Identifier in lowercase hexadecimal with leading zeros NOT suppressed.
 
 Example:
 
-If ```OMNIBOR_DIR=.omnibor``` then the Input Manifest with gitoid:blob:sha1 Input Manifest Identifier
-0e8efd4cdf0d5bafcfcae658c2662a73b199b301 would be stored in:
+If ```OMNIBOR_DIR=.omnibor``` then the Input Manifest with ```gitoid:blob:sha1`` Input Manifest Identifier
+```0e8efd4cdf0d5bafcfcae658c2662a73b199b301``` would be stored in:
 
 ```
 .omnibor/objects/gitoid_blob_sha1/0e/8efd4cdf0d5bafcfcae658c2662a73b199b301

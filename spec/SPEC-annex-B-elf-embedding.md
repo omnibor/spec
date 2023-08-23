@@ -5,7 +5,7 @@ Annex B contains a method of embedding Input Manifest Identifiers into ELF files
 ## Embedded Input Manifest Identifier
 
 If an artifact contains an embedded Input Manifest Identifier, then implementations MUST conform to the file format recommendations specified in this document.
-If an artifact does not contain an embedded artifact dependency graph identifier, then implementations SHOULD look for that information in alternate locations. Tools may store and retrieve such information in alternate formats.
+If an artifact does not contain an embedded Artifact Dependency Graph identifier, then implementations SHOULD look for that information in alternate locations. Tools may store and retrieve such information in alternate formats.
 
 ### Input Manifest Identifier persistence by a Build Tool in ELF Objects/Executables
 
