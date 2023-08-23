@@ -1,6 +1,6 @@
 ## Annex C
 
-Annex B contains a method of embedding an Input Manifest Identifier into source code files files.
+Annex C contains a method of embedding an Input Manifest Identifier into source code files files.
 
 ### Embedded Input Manifest Identifier
 
@@ -25,7 +25,7 @@ For a file with shell commenting semantics (like a shell script, Python, etc) a 
 
 The OmniBOR-Input-Manifest-ID comment line should be placed before the first non-comment, non-blank text in the file.  The OmniBOR-Input-Manifest-ID comment line should be proceeded and followed by a blank line to insure it is not interpretted as part of another comment block.
 
-A subsequent build tool reading the source code file should interpret the first such comment line it encounters in the file as being the Input Manifest Identifier, and ignore subsequent comment lines in the file which may contain Input Manifest Identifiers.
+A subsequent build tool reading the source code file should interpret the last such comment line it encounters in the file as being the Input Manifest Identifier, and ignore previous comment lines in the file which may contain Input Manifest Identifiers.
 
 Example:
 
