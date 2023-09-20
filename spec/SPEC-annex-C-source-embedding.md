@@ -24,6 +24,9 @@ For a file with shell commenting semantics (like a shell script, Python, etc) a 
 # OmniBOR-Input-Manifest-ID: [ gitoid:blob:sha1:261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64, gitoid:blob:sha256:09c825ac02df9150e4f93d12ba1da5d1ff5846c3e62503c814aa3a300c535772 ]
 ```
 
+When interpretting an OmniBOR-Input-Manifest-ID comment line a reader should ignore any leading and trailing spaces around '[' or ']'
+or ','.
+
 ### Placement of OmniBOR-Input-Manifest-ID Comment Line
 
 The OmniBOR-Input-Manifest-ID comment line should be placed as the last line in the source code file.  The OmniBOR-Input-Manifest-ID comment line should be preceded by a blank line to ensure it is not interpretted as part of another comment block.
