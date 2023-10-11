@@ -37,8 +37,7 @@ Subdirectory structure, filenaming, and file schema below ```${OMNIBOR_DIR}/meta
 #### Build tool selection of OMNIBOR_DIR
 
 OMNIBOR_DIR may be set by the following methods, listed in order of precedence:
-1.  A non-empty env variable named OMNIBOR_DIR
 1. A build tool specific flag
 2. A non-empty env variable named OMNIBOR_DIR
 
-The absence of specification of a location to write omnibor data via either the OMNIBOR_DIR or the build tool specific flag  may be taken as a signal to skip OmniBOR generation.
+The absence of specification of a location to write omnibor data via either the build tool specific flag or OMNIBOR_DIR variable may be taken as a signal to skip OmniBOR generation.

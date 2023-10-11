@@ -339,6 +339,7 @@ Concretely the Artifact Dependency Graph (ADG) of an Artifact is:
 
 - [Annex A - File System Storage](SPEC-annex-A-filesystem-storage.md)
 - [Annex B - Elf Embedding](SPEC-annex-B-elf-embedding.md)
+- [Annex C - Source Embedding](SPEC-annex-C-source-embedding.md)
 
 ## Bibliography
 

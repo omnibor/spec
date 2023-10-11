@@ -16,8 +16,9 @@ When persisting the Input Manifest Identifiers into an ELF object or an ELF exec
 3. type (4 bytes): This field must contain the value associated with one of the reserved gitoid types or a custom artifact identifier type.
    The values for the reserved types are in the range of 0x00000000 to 0x7fffffff. Permissible gitoid types with reserved values are:
 
-   ```NT_GITOID_BLOB_SHA1 = 0x1,
-     NT_GITOID_BLOB_SHA256 = 0x2,
+   ```
+	NT_GITOID_BLOB_SHA1 = 0x1,
+	NT_GITOID_BLOB_SHA256 = 0x2,
    ```
 
    Custom artifact identifier types must use a value in the range of 0x80000000 to 0xffffffff.
@@ -29,5 +30,6 @@ When recording multiple artifact identifiers in the Note section,
 1. There must be only one Note entry for each artifact identifier type.
 2. The Note entries must be in ascending order of artifact identifier type.
 
-```  Conforming build tool must generate all mandatory artifact identifier types, currently sha1 and sha256 gitoids.
+```  
+   Conforming build tool must generate all mandatory artifact identifier types, currently sha1 and sha256 gitoids.
 ```
