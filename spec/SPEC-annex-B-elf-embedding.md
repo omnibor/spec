@@ -1,35 +1,62 @@
 # Annex B
 
-Annex B contains a method of embedding Input Manifest Identifiers into ELF files.
+Annex B contains a method of embedding Input Manifest Identifiers into ELF
+files.
 
-## Embedded Input Manifest Identifier
+## Input Manifest Identifiers
 
-If an artifact contains an embedded Input Manifest Identifier, then implementations MUST conform to the file format recommendations specified in this document.
-If an artifact does not contain an embedded Artifact Dependency Graph identifier, then implementations SHOULD look for that information in alternate locations. Tools may store and retrieve such information in alternate formats.
+Input Manifest Identifiers are Artifact Identifiers (Git Object Identifiers
+\[GitOIDs\]) for Artifact Input Manifests. They identify an Artifact Input
+Manifest and MAY be embedded into an artifact to relate the artifact to its
+Artifact Input Manifests.
 
-### Input Manifest Identifier persistence by a Build Tool in ELF Objects/Executables
+If an ELF artifact contains an embedded Input Manifest Identifier, then
+implementations MUST conform to the format specified in this document.
 
-When persisting the Input Manifest Identifiers into an ELF object or an ELF executable, the build tool should create a [section](https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA.junk/sections.html) ```.note.omnibor``` and place the Input Manifest Identifiers in the descriptor field of the Note entry. This section must be of type SHT_NOTE and must have the attribute SHF_ALLOC. Multiple Note entries must be created, one for each artifact identifier type when multiple artifact identifier types are involved. Each Note entry must contain the following fields in the same order as given below:
+Note that multiple Input Manifests MUST be produced for a single artifact,
+reflecting the use of different hash functions to produce the Artifact
+Identifiers.
 
-1. namesz (4 bytes): This field must be set to a value of 8, the length of the 'owner' field ```OMNIBOR\0``` in bytes.
-2. descz (4 bytes): This field must contain the length of the Input Manifest Identifier in bytes.
-3. type (4 bytes): This field must contain the value associated with one of the reserved gitoid types or a custom artifact identifier type.
-   The values for the reserved types are in the range of 0x00000000 to 0x7fffffff. Permissible gitoid types with reserved values are:
+### Input Manifest Identifier persistence in ELF Objects/Executables
+
+Input Manifest Identifiers MUST be persisted by build tools when they build
+an artifact and produce an Artifact Input Manifest for that artifact.
+
+When persisting Input Manifest Identifiers into an ELF object or an ELF
+executable, the build tool MUST create a [section][elf_section]
+`.note.omnibor` and place the Input Manifest Identifiers in the descriptor
+field of the note entry. This section MUST be of type `SHT_NOTE` and MUST have
+the attribute `SHF_ALLOC`. Multiple Note entries MUST be created, one for each
+Artifact Identifier type when multiple Artifact Identifier types are involved.
+Each note entry MUST contain the following fields in the same order as given
+below:
+
+1. `namesz` (4 bytes): This field MUST be set to a value of `8`, the length of
+   the 'owner' field `OMNIBOR\0` in bytes.
+2. `descz` (4 bytes): This field MUST contain the length of the Input Manifest
+   Identifier in bytes, including a byte for the null terminator.
+3. `type` (4 bytes): This field MUST contain the value associated with one of
+   the reserved Artifact Identifier types. The values for the reserved types
+   are in the range of `0x00000000` to `0x7fffffff`. Permissible types with
+   reserved values are:
 
    ```
 	NT_GITOID_BLOB_SHA1 = 0x1,
 	NT_GITOID_BLOB_SHA256 = 0x2,
    ```
 
-   Custom artifact identifier types must use a value in the range of 0x80000000 to 0xffffffff.
-4. owner (8 bytes): This field must contain the string "OMNIBOR\0", padded to 8 bytes.
-5. descriptor: This field must contain the artifact identifiers as raw bytes. The length of this field is the same as the value in 'descz' field.
+4. `owner` (8 bytes): This field MUST contain the string `OMNIBOR\0`, padded to
+   8 bytes.
+5. `descriptor`: This field MUST contain the Input Manifest Identifiers as raw
+   bytes.The length of this field is the same as the value in the `descz` field.
 
-When recording multiple artifact identifiers in the Note section,
+When recording multiple Input Manifest Identifiers in the note section,
 
-1. There must be only one Note entry for each artifact identifier type.
-2. The Note entries must be in ascending order of artifact identifier type.
+1. There MUST be only one note entry for each Input Manifest Identifier type.
+2. The note entries MUST be in ascending order of Input Manifest Identifier
+   type.
 
-```  
-   Conforming build tool must generate all mandatory artifact identifier types, currently sha1 and sha256 gitoids.
-```
+Conforming build tools MUST generate all Input Manifest Identifier types,
+currently SHA1 and SHA256 Artifact Identifiers.
+
+[elf_section]: https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA.junk/sections.html
