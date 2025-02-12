@@ -60,8 +60,16 @@ produce an artifact. For example, if an executable is compiled by linking
 together a collection of object files, the Artifact Identifier of every object
 file would be listed in the Input Manifest for the executable. Input Manifests
 can be identified by their own Artifact Identifier. The Artifact ID for the
-manifest can be embedded directly into executable files, or can be provided
-in a separate file alongside the artifact whose inputs they describe.
+Input Manifest can be embedded directly into executable files, or can be
+provided in a separate file alongside the artifact whose inputs they describe.
+
+Together, Artifact IDs and Input Manifests form a kind of Merkle Tree, where
+changes in the input used to build an artifacts cause a change in the Artifact
+ID of that artifact, and on any _other_ artifacts further built with it as
+a build input. In effect, any change in the entire build dependency chain for
+an artifact becomes detectable with the combination of Artifact IDs and Input
+Manifests when the Artifact ID of an artifact's Input Manifest is embedded in
+the artifact itself.
 
 The central purpose in the design of Artifact Identifiers and Input Manifests
 is to enable creation of Artifact Dependency Graphs. An Artifact Dependency
@@ -137,11 +145,12 @@ one or more output artifacts. Examples of build tools include:
 - __Linkers:__
   - `llvm-lld`
   - `binutils-ld`
-- __Runtimes__
+- __Runtimes:__
   - Java JVM
   - Node.js
   - Python interpreter
-- __Code Generators__
+- __Code Generators:__
+  - `patch`
 
 ## 6. Specifications
 
@@ -159,9 +168,8 @@ the following characteristics:
 Artifact Identifier can be shortened to Artifact ID.
 
 Because two artifacts are equivalent if and only if their binary
-representations are equal, a hash function may be applied to the binary
-representation of an artifact to yield an identifier which satisfies the
-reproducible, unique, and immutable requirements of Artifact Identifiers.
+representations are equal, meaning that their length in bytes is equal, and
+that the values of all bytes of the artifacts are equal.
 
 ### 6.2. Artifact Identifier Types
 
@@ -348,29 +356,7 @@ would be stored in:
 .omnibor/manifests/gitoid_blob_sha256/09/c825ac02df9150e4f93d12ba1da5d1ff5846c3e62503c814aa3a300c535772
 ```
 
-### 7.1. Use of a Target Index
-
-Some desirable operations related to Input Manifests require associating an
-Input Manifest with the artifact it is describing. Ideally, the artifact itself
-has embedded in it the Artifact ID of its Input Manifest. However, in cases
-where this is not true, or as a performance optimization even when it _is_ true,
-it is desirable to maintain a "Target Index" which associated the Artifact ID
-of an artifact with the Artifact ID of its Input Manifest.
-
-This Target Index MUST be stored at `${OMNIBOR_DIR}/targets`, and MUST take
-the form of a text file where each line (separated only by the `\n` character)
-MUST be formatted as follows:
-
-```
-${Artifact ID of the target artifact}⎵${Artifact ID of the Input Manifest}
-```
-
-`⎵` above refers to the ASCII space character (0x20).
-
-This index file may then be used to improve the performance and reliability of
-operations related to Input Manifests.
-
-### 7.2. Selection of Storage Location
+### 7.1. Selection of Storage Location
 
 The storage location for Input Manifests MAY be set by the following methods,
 listed in order of increasing precedence:
