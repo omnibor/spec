@@ -171,7 +171,7 @@ Because two artifacts are equivalent if and only if their binary
 representations are equal, meaning that their length in bytes is equal, and
 that the values of all bytes of the artifacts are equal.
 
-### 6.2. Artifact Identifier Types
+#### 6.1.1. Artifact Identifier Types
 
 The majority of source code artifacts are already stored in Git and
 indexed by their Git Object Identifiers ("GitOIDs") as Git objects of type
@@ -223,14 +223,26 @@ be interpreted to mean the list:
 
 - `gitoid:blob:sha256`
 
-### 6.3. Input Manifest
+#### 6.1.2. Artifact Identifier Newline Normalization
+
+To ensure cross-platform ability to consistently identify artifacts, Artifact
+Identifier construction _must_ normalize all Windows-style newlines to
+Unix-style. This means that all bytes of the form `ODOA` (ASCII for the
+Windows-style newlines made of a carriage return followed by a line feed),
+_must_ be converted to Unix-style (only a linefeed, or `0A` byte value) before
+being hashed.
+
+This _must_ be done regardless of any information about the artifact being
+identified.
+
+### 6.2. Input Manifest
 
 An Input Manifest for an artifact enumerates the inputs to the build tool that
 produced the artifact.
 
 A given Input Manifest utilizes precisely one Artifact Identifier Type.
 
-#### 6.3.1. Input Manifest Header
+#### 6.2.1. Input Manifest Header
 
 In order to distinguish the type of identifier used in the Input Manifest,
 it begins with a single newline-terminated header line:
@@ -248,7 +260,7 @@ gitoid:blob:sha256\n
 All identifiers in a Input Manifest MUST be of the Artifact Identifier
 Type declared in the header.
 
-#### 6.3.2. Input Manifest Records
+#### 6.2.2. Input Manifest Records
 
 The Input Manifest after the header consists of a list of newline terminated
 input records.
@@ -288,7 +300,7 @@ The Artifact Identifier for the input artifact and for the input artifact's
 Input Manifest MUST both be of the Artifact Identifier Type declared in the
 Input Manifest header.
 
-#### 6.3.3. Input Manifest Character Encoding
+#### 6.2.3. Input Manifest Character Encoding
 
 All characters in an Input Manifest are encoded in ASCII. Please note: all '\n'
 MUST be encoded as '\n' characters, _not_ the line delimiter of the platform.
@@ -296,7 +308,7 @@ This is necessary because the Input Manifest will be hashed to produce its
 Artifact Identifier, and these Artifact Identifiers MUST be consistent
 regardless of the platform on which the Input Manifest generation is performed.
 
-#### 6.3.4. Input Manifest Embedding
+#### 6.2.4. Input Manifest Embedding
 
 Each build tool SHOULD embed into the output artifact a deterministically
 ordered list of Artifact IDs for the Input Manifest for each mandatory Artifact
@@ -310,7 +322,7 @@ artifact does not permit a method to embed additional information without
 breaking the functionality of that artifact — then embedding SHOULD be
 skipped.
 
-#### 6.3.5. Input Manifest Construction
+#### 6.2.5. Input Manifest Construction
 
 A build tool creating an output artifact MUST compute an Input Manifest of
 each mandatory Artifact Identifier Type.
@@ -324,7 +336,7 @@ For each input artifact the build tool MUST:
 The build tool MUST persist an Input Manifest using the
 `${artifact identifier}` and `${input manifest artifact id}` for each input.
 
-#### 6.3.6. Input Manifest Example
+#### 6.2.6. Input Manifest Example
 
 ```
 gitoid:blob:sha256
